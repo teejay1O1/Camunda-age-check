@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_18xlzms" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.3.0">
+  <bpmn:process id="age-checker" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_10u0eag</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_10u0eag" sourceRef="StartEvent_1" targetRef="Activity_1h4fibo" />
+    <bpmn:exclusiveGateway id="Gateway_0xccorj" name="age">
+      <bpmn:incoming>Flow_1yret22</bpmn:incoming>
+      <bpmn:outgoing>Flow_1t0djwe</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1lehhjv</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_1yret22" sourceRef="Activity_1h4fibo" targetRef="Gateway_0xccorj" />
+    <bpmn:sequenceFlow id="Flow_1t0djwe" name="age&#60;60" sourceRef="Gateway_0xccorj" targetRef="Activity_1yqcbvb">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{age&lt;60}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:endEvent id="Event_128tfsp" name="pension was given">
+      <bpmn:incoming>Flow_1u4qs3g</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1u4qs3g" sourceRef="Activity_1yqcbvb" targetRef="Event_128tfsp" />
+    <bpmn:endEvent id="Event_11si4vv" name="not applicable">
+      <bpmn:incoming>Flow_1lehhjv</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1lehhjv" name="age&#62;=60" sourceRef="Gateway_0xccorj" targetRef="Event_11si4vv">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{age &gt;= 60}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:userTask id="Activity_1h4fibo" name="enter age">
+      <bpmn:incoming>Flow_10u0eag</bpmn:incoming>
+      <bpmn:outgoing>Flow_1yret22</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="Activity_1yqcbvb" name="pension rewarded">
+      <bpmn:incoming>Flow_1t0djwe</bpmn:incoming>
+      <bpmn:outgoing>Flow_1u4qs3g</bpmn:outgoing>
+    </bpmn:userTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="age-checker">
+      <bpmndi:BPMNEdge id="Flow_1lehhjv_di" bpmnElement="Flow_1lehhjv">
+        <di:waypoint x="450" y="152" />
+        <di:waypoint x="450" y="240" />
+        <di:waypoint x="532" y="240" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="443" y="193" width="44" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1u4qs3g_di" bpmnElement="Flow_1u4qs3g">
+        <di:waypoint x="630" y="127" />
+        <di:waypoint x="692" y="127" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1t0djwe_di" bpmnElement="Flow_1t0djwe">
+        <di:waypoint x="475" y="127" />
+        <di:waypoint x="530" y="127" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="484" y="109" width="37" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1yret22_di" bpmnElement="Flow_1yret22">
+        <di:waypoint x="370" y="127" />
+        <di:waypoint x="425" y="127" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_10u0eag_di" bpmnElement="Flow_10u0eag">
+        <di:waypoint x="215" y="127" />
+        <di:waypoint x="270" y="127" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="109" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0xccorj_di" bpmnElement="Gateway_0xccorj" isMarkerVisible="true">
+        <dc:Bounds x="425" y="102" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="440" y="78" width="19" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_128tfsp_di" bpmnElement="Event_128tfsp">
+        <dc:Bounds x="692" y="109" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="680" y="152" width="62" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_11si4vv_di" bpmnElement="Event_11si4vv">
+        <dc:Bounds x="532" y="222" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="516" y="265" width="68" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0hpzhxm_di" bpmnElement="Activity_1h4fibo">
+        <dc:Bounds x="270" y="87" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0dfappa_di" bpmnElement="Activity_1yqcbvb">
+        <dc:Bounds x="530" y="87" width="100" height="80" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
